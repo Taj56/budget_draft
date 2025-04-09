@@ -32,7 +32,7 @@ const Screen1 = () => {
         </View>
 
         <Text className="text-[#F3EFFE] text-lg absolute bottom-24 left-5">
-          *This app is still in development.
+          *This app is still in development. Nothing you see is 100% accurate to release.
         </Text>
 
         <Pressable

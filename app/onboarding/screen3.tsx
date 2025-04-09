@@ -3,6 +3,8 @@ import { View, Text, Image, ScrollView, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TextInput } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRouter } from 'expo-router';
+import { setOnboardingComplete } from '@/utils/storage';
 
 const currencies = [
   { code: 'USD', name: 'US Dollar' },
@@ -19,6 +21,12 @@ const currencies = [
 const Screen3 = () => {
   const [selectedCurrency, setSelectedCurrency] = useState<string | null>(null);
   const [search, setSearch] = useState<string>('');
+  const router = useRouter();
+
+  const finishOnboarding = async () => {
+    await setOnboardingComplete();
+    router.replace('/(tabs)');
+  };
 
   const handleSelect = async (code: string) => {
     setSelectedCurrency(code);
@@ -31,7 +39,8 @@ const Screen3 = () => {
   );
 
   return (
-    <SafeAreaView className="bg-[#141118] w-full min-h-screen px-5 relative">
+    <SafeAreaView className="flex-1 bg-[#141118] px-5 relative">
+      {/* Header */}
       <View className="mt-10">
         <Image
           source={require('@/assets/images/currency.png')}
@@ -49,15 +58,15 @@ const Screen3 = () => {
           onChangeText={setSearch}
           label="Search"
           mode="outlined"
-          // className="bg-[#1c1b23]"
           theme={{ colors: { text: 'white', primary: '#674FA3', placeholder: 'gray' } }}
         />
       </View>
 
+      {/* Scrollable Content */}
       <ScrollView
-        className="mt-5"
-        contentContainerStyle={{ paddingBottom: 250 }}
+        className="mt-5 mb-5"
         keyboardShouldPersistTaps="handled"
+        contentContainerStyle={{ paddingBottom: 160 }}
       >
         <View className="flex flex-wrap flex-row justify-between gap-5">
           {filteredCurrencies.map((currency) => (
@@ -70,14 +79,32 @@ const Screen3 = () => {
                   : 'bg-[#2D2A35]'
               }`}
             >
-              <Text className="text-white text-xl font-bold">
-                {currency.code}
-              </Text>
+              <Text className="text-white text-xl font-bold">{currency.code}</Text>
               <Text className="text-white text-sm mt-2">{currency.name}</Text>
             </Pressable>
           ))}
         </View>
       </ScrollView>
+
+      {/* Finish Button (outside ScrollView, fixed at bottom) */}
+      <View className="absolute bottom-10 right-10">
+        <Pressable
+          onPress={finishOnboarding}
+          className="bg-[#674FA3] px-8 py-4 rounded-lg w-[120px] flex flex-row gap-2"
+          style={{
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.3,
+            shadowRadius: 6,
+            elevation: 5,
+          }}
+        >
+          <Text className="text-white font-bold text-lg">Finish</Text>
+          <Image source={require('@/assets/images/arrow.png')} 
+          style={{width: 30, height: 30}}
+          />
+        </Pressable>
+      </View>
     </SafeAreaView>
   );
 };

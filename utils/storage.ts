@@ -27,7 +27,7 @@ export const getUserName = async () => {
   }
 }
 
-const getCurrency = async () => {
+export const getCurrency = async () => {
   const value = await AsyncStorage.getItem('user_currency');
   if (value !== null) {
     console.log('Selected currency:', value);

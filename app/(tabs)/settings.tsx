@@ -1,10 +1,10 @@
 import { View, Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-const accounts = () => {
+const settings = () => {
   return (
     <SafeAreaView>
-      <Text>accounts</Text>
+      <Text>settings</Text>
     </SafeAreaView>
   )
 }
-export default accounts
+export default settings

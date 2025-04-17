@@ -4,6 +4,7 @@ import { View } from 'react-native';
 import * as SystemUI from 'expo-system-ui'
 import { useEffect } from 'react'
 import './globals.css';
+import { UserProvider } from '@/context/userContext';
 
 export default function RootLayout() {
 
@@ -13,9 +14,11 @@ export default function RootLayout() {
   }, [])
 
   return (
-    <View style={{ flex: 1 }}>
+    <UserProvider>
+      <View style={{ flex: 1 }}>
       <StatusBar style="light" backgroundColor="#141118" />
       <Slot />
     </View>
+    </UserProvider>
   );
 }

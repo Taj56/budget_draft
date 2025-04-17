@@ -33,3 +33,11 @@ export const getCurrency = async () => {
     console.log('Selected currency:', value);
   }
 };
+
+export const saveCurrency = async (currency: string) => {
+  try {
+    await AsyncStorage.setItem('user_currency', currency);
+  } catch (error) {
+    console.error("Error saving currency", error);
+  }
+};

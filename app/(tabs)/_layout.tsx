@@ -39,7 +39,7 @@ const _layout = () => {
           alignItems: "center",
       },
       tabBarStyle: {
-          backgroundColor: "#0F0D23",
+          backgroundColor: "#35343A",
           height: 52,
           borderWidth: 1,
           borderColor: "#0F0D23",
@@ -50,6 +50,7 @@ const _layout = () => {
       options={{
         headerShown: false,
         title: 'Home',
+        // @ts-ignore
         tabBarIcon: ({ focused }) => (
           <TabIcon focused={focused} icon={icons.home} title="Home" />
       ),
@@ -59,6 +60,7 @@ const _layout = () => {
       options={{
         headerShown: false,
         title: 'Accounts',
+        // @ts-ignore
         tabBarIcon: ({ focused }) => (
           <TabIcon focused={focused} icon={icons.wallet} title="Accounts" />
         ),
@@ -68,6 +70,7 @@ const _layout = () => {
       options={{
         headerShown: false,
         title: 'Categories',
+        // @ts-ignore
         tabBarIcon: ({ focused }) => (
           <TabIcon focused={focused} icon={icons.category} title="Categories" />
         ),
@@ -77,6 +80,7 @@ const _layout = () => {
       options={{
         headerShown: false,
         title: 'Settings',
+        // @ts-ignore
         tabBarIcon: ({ focused }) => (
           <TabIcon focused={focused} icon={icons.settings} title="Settings" />
         ),

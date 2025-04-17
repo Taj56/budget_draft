@@ -1,12 +1,15 @@
-import { getUserName, getCurrency } from "@/utils/storage";
+import { useUser } from "@/context/userContext";
+import { getUserName } from "@/utils/storage";
 import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
 
-  const [userName, setUserName] = useState<string | null>(null);
-  const [myCurrency, setMyCurrency] = useState(null);
+  const { userName, currency, setUserName, setCurrency } = useUser();
+  // const [userName, setUserName] = useState<string | null>(null);
+
+  
 
   useEffect(()=>{
     const fetchName = async ()=>{
